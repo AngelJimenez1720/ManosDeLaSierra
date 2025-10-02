@@ -1,0 +1,220 @@
+body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff8f0;
+    }
+    header {
+  background-color: #6d4c41;
+  padding: 20px;
+  text-align: center;
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-left: 30px;
+}
+
+.logo-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 100px;
+}
+
+.logout-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 8px 16px;
+  background-color: #d7ccc8;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #3e2723;
+}
+
+.logout-btn:hover {
+  background-color: #bcaaa4;
+}
+
+  .gallery {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 250px;
+  text-align: center;
+  padding: 15px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.img-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.img-container img {
+  width: 100%;
+  height: 250px;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.img-container:hover img {
+  transform: scale(1.05);
+}
+.info-hover {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.6);
+  color: white;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 0.85em;
+  text-align: center;
+}
+
+.img-container:hover .info-hover {
+  opacity: 1;
+}
+
+.agregar-btn {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #c77b49;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.agregar-btn:hover {
+  background-color: #a86138;
+}
+/* Botón Eliminar del carrito */
+button.eliminar-btn {
+  background-color: #cc4a4a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: inherit;
+}
+
+button.eliminar-btn:hover {
+  background-color: #a73a3a;
+}
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .logo-container {
+    flex-direction: column;
+    padding-left: 0;
+    gap: 10px;
+  }
+
+  .title-container {
+    padding-right: 0;
+  }
+
+  .logout-btn {
+    position: static;
+    margin-top: 10px;
+  }
+
+  .logo-img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .logout-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+/* Estilos generales para el contenedor del carrito */
+#carrito-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #fff8f0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 15px;
+  z-index: 999;
+  max-width: 300px;
+  width: 90%;
+}
+
+/* Responsive tablet */
+@media (max-width: 768px) {
+  #carrito-container {
+    top: auto;
+    bottom: 20px;
+    right: 20px;
+    max-width: 90%;
+    width: 90%;
+  }
+}
+/* Responsive celular */
+@media (max-width: 480px) {
+  #carrito-container {
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    max-width: 95%;
+    width: auto;
+  }
+}

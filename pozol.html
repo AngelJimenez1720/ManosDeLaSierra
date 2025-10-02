@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="img/pottery.png" type="image/png">
+  <title>Aprende a Preparar Pozol - Saberes Olmeca-Zoque</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fcefe6;
+      min-height: 100vh;
+      color: #6d4c41;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* BARRA SUPERIOR */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding: 0 20px;
+    }
+
+    .auth-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff3e0;
+      padding: 8px 15px;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #a1887f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+    }
+
+    .btn-login {
+      background: #a1887f;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-login:hover {
+      background: #6d4c41;
+    }
+
+    .btn-logout {
+      background: transparent;
+      color: #a1887f;
+      border: 1px solid #a1887f;
+      padding: 6px 12px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-logout:hover {
+      background: #a1887f;
+      color: white;
+    }
+
+    .back-button {
+      background: #a1887f;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: #6d4c41;
+    }
+
+    /* ESTILOS PARA EL LOGO EN CABECERA */
+    .header-logo {
+      text-align: center;
+    }
+    
+    .site-logo {
+      width: 200px;
+      height: 200px;
+      margin-bottom: 5px;
+    }
+    
+    @media (max-width: 768px) {
+      .site-logo {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .site-title {
+        font-size: 1.4rem;
+      }
+    }
+
+    /* HEADER DEL TUTORIAL */
+    .tutorial-header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 30px;
+      background: #fff3e0;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .tutorial-header h1 {
+      color: #6d4c41;
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .tutorial-meta {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #8d6e63;
+    }
+
+    .difficulty-badge {
+      display: inline-block;
+      padding: 6px 15px;
+      background: #fff3e0;
+      color: #ef6c00;
+      border-radius: 15px;
+      font-weight: bold;
+      border: 1px solid #d7ccc8;
+    }
+
+    /* CONTENIDO PRINCIPAL */
+    .tutorial-content {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .steps-container {
+      background: #fff3e0;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .step {
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #d7ccc8;
+    }
+
+    .step:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .step-number {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: #a1887f;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .step h3 {
+      color: #6d4c41;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+
+    .step p {
+      color: #5d4037;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    /* MODIFICACIÓN: Imágenes en lugar de iconos */
+    .step-image {
+      width: 100%;
+      height: 200px;
+      border-radius: 8px;
+      margin: 15px 0;
+      object-fit: cover;
+      border: 2px solid #d7ccc8;
+    }
+
+    .ingredients-list, .tools-list {
+      background: #fcefe6;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+
+    .ingredients-list h4, .tools-list h4 {
+      color: #6d4c41;
+      margin-bottom: 10px;
+    }
+
+    .ingredients-list ul, .tools-list ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .ingredients-list li, .tools-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid #d7ccc8;
+      color: #5d4037;
+    }
+
+    .ingredients-list li:last-child, .tools-list li:last-child {
+      border-bottom: none;
+    }
+
+    /* BARRA LATERAL */
+    .sidebar {
+      background: #fff3e0;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      height: fit-content;
+    }
+
+    .instructor-card {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .instructor-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #a1887f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      margin: 0 auto 15px;
+    }
+
+    .instructor-card h3 {
+      color: #6d4c41;
+      margin-bottom: 5px;
+    }
+
+    .instructor-card p {
+      color: #8d6e63;
+      font-size: 0.9rem;
+    }
+
+    .progress-section {
+      margin-bottom: 25px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #d7ccc8;
+      border-radius: 4px;
+      margin: 10px 0;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #a1887f;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .btn-complete {
+      width: 100%;
+      padding: 12px;
+      background: #a1887f;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-bottom: 15px;
+    }
+
+    .btn-complete:hover {
+      background: #6d4c41;
+    }
+
+    .btn-complete:disabled {
+      background: #d7ccc8;
+      cursor: not-allowed;
+    }
+
+    .cultural-info {
+      background: #fcefe6;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .cultural-info h4 {
+      color: #6d4c41;
+      margin-bottom: 10px;
+    }
+
+    .cultural-info p {
+      color: #5d4037;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* SECCIÓN DE NAVEGACIÓN */
+    .navigation {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #d7ccc8;
+    }
+
+    .nav-btn {
+      padding: 12px 25px;
+      background: #a1887f;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .nav-btn:hover {
+      background: #6d4c41;
+    }
+
+    .nav-btn.disabled {
+      background: #d7ccc8;
+      cursor: not-allowed;
+    }
+
+    /* NUEVA SECCIÓN: Video */
+    .video-section {
+      margin-top: 40px;
+      padding: 20px;
+      background: #fff3e0;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .video-container {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .video-player {
+      width: 100%;
+      height: 500px;
+      background: #333;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+
+    .video-caption {
+      text-align: center;
+      color: #8d6e63;
+      font-style: italic;
+    }
+
+    /* MODAL DE LOGIN - CORREGIDO */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: #fff3e0;
+      padding: 30px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .modal h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #6d4c41;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #6d4c41;
+      font-weight: bold;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d7ccc8;
+      border-radius: 6px;
+      background: white;
+      color: #6d4037;
+      font-size: 1rem;
+    }
+
+    .form-group input::placeholder {
+      color: #8d6e63;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 12px;
+      background: #a1887f;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: #6d4c41;
+    }
+
+    .btn-secondary {
+      width: 100%;
+      padding: 12px;
+      background: transparent;
+      color: #a1887f;
+      border: 1px solid #a1887f;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: #a1887f;
+      color: white;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: #6d4c41;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .error-message {
+      color: #c62828;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .tutorial-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .tutorial-header h1 {
+        font-size: 2rem;
+      }
+      
+      .top-bar {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+      }
+
+      .auth-section {
+        align-self: flex-end;
+      }
+
+      .tutorial-meta {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      
+      .video-player {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- BARRA SUPERIOR -->
+    <div class="top-bar">
+      <a href="catalago.html" class="back-button">← Volver al Catálogo</a>
+      
+      <div class="auth-section">
+        <div id="userInfo" class="user-info" style="display: none;">
+          <div class="user-avatar" id="userAvatar">U</div>
+          <span id="userName">Usuario</span>
+          <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
+        </div>
+        <button id="loginButton" class="btn-login" onclick="openLoginModal()">Iniciar Sesión</button>
+      </div>
+    </div>
+    
+    <!-- Logo -->
+    <div class="header-logo">
+      <img src="img/LogoCCM.png" alt="Logo Cultura Olmeca-Zoque" class="site-logo">
+    </div>
+
+    <!-- HEADER DEL TUTORIAL -->
+    <div class="tutorial-header">
+      <h1>Pozol de Cacao y Maíz</h1>
+      <div class="tutorial-meta">
+        <div class="meta-item">
+          <span>👩‍🏫 Por: Abuela María López</span>
+        </div>
+        <div class="meta-item">
+          <span>⏱️ Duración: 3 semanas</span>
+        </div>
+        <div class="meta-item">
+          <span>📚 6 lecciones</span>
+        </div>
+        <div class="meta-item">
+          <span class="difficulty-badge">Nivel Medio</span>
+        </div>
+      </div>
+      <p>Bebida ceremonial ancestral preparada con maíz nixtamalizado y cacao, fermentada de forma tradicional.</p>
+    </div>
+
+    <div class="tutorial-content">
+      <!-- CONTENIDO PRINCIPAL -->
+      <div class="steps-container">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Selección y Preparación del Maíz</h3>
+          <p>Comienza seleccionando maíz criollo de buena calidad. Preferiblemente maíz blanco o amarillo, libre de impurezas y granos dañados.</p>
+          <!-- IMAGEN AGREGADA -->
+          <img src="img/maiz-criollo.jpeg" alt="Maíz criollo de buena calidad" class="step-image">
+          <div class="ingredients-list">
+            <h4>Materiales Necesarios:</h4>
+            <ul>
+              <li>1 kg de maíz criollo</li>
+              <li>Agua limpia</li>
+              <li>Recipiente de barro o plástico</li>
+              <li>Cal viva (para nixtamalización)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Nixtamalización del Maíz</h3>
+          <p>Proceso fundamental para ablandar el grano y liberar nutrientes. Hierve el maíz con cal en proporción de 1% del peso del maíz.</p>
+          <!-- IMAGEN AGREGADA -->
+          <img src="img/nixtamalizacion.jpeg" alt="Proceso de nixtamalización del maíz" class="step-image">
+          <p><strong>Procedimiento:</strong> Cocina el maíz por 45 minutos hasta que el grano se desprenda fácilmente de la cáscara. Deja reposar toda la noche.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Lavado y Molienda</h3>
+          <p>Lava el maíz nixtamalizado hasta que el agua salga limpia. Muele en metate o molino hasta obtener una masa fina.</p>
+          <!-- IMAGEN AGREGADA -->
+          <img src="img/molienda-maiz.jpeg" alt="Molienda del maíz en metate" class="step-image">
+          <div class="tools-list">
+            <h4>Herramientas Tradicionales:</h4>
+            <ul>
+              <li>Metate de piedra volcánica</li>
+              <li>Mano de metate</li>
+              <li>Recipiente para la masa</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Preparación del Cacao</h3>
+          <p>Tuesta ligeramente los granos de cacao criollo. Pela y muele junto con la masa de maíz hasta integrar completamente.</p>
+          <!-- IMAGEN AGREGADA -->
+          <img src="img/cacao-tostado.jpeg" alt="Granos de cacao tostados" class="step-image">
+          <p><strong>Proporción:</strong> Por cada kg de masa, agrega 200g de cacao tostado y pelado.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">5</div>
+          <h3>Fermentación Tradicional</h3>
+          <p>Forma bolas con la masa y colócalas en hojas de plátano o maíz. Deja fermentar en lugar fresco por 2-3 días.</p>
+          <!-- IMAGEN AGREGADA -->
+          <img src="img/fermentacion-pozol.jpeg" alt="Pozol fermentándose en hojas" class="step-image">
+          <p>La fermentación desarrolla el sabor característico y propiedades probióticas del pozol.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">6</div>
+          <h3>Preparación de la Bebida</h3>
+          <p>Disuelve una bola de pozol en agua. Endulza con miel de abeja o piloncillo al gusto. Sirve frío.</p>
+          <!-- IMAGEN AGREGADA -->
+          <img src="img/pozol-servido.jpeg" alt="Pozol servido en jícara" class="step-image">
+          <p><strong>Consumo tradicional:</strong> Se toma en jícaras y se comparte en ceremonias y reuniones familiares.</p>
+        </div>
+
+        <!-- NUEVA SECCIÓN: VIDEO -->
+<div class="video-section">
+  <h3>Video de Preparación Completa</h3>
+  <p>Observa el proceso completo de preparación del pozol en este video demostrativo:</p>
+  <div class="video-container">
+    <!-- REEMPLAZA ESTO CON TU VIDEO -->
+    <video class="video-player" controls>
+      <source src="video/Proceso-pozol.mp4" type="video/mp4">
+      Tu navegador no soporta el elemento de video.
+    </video>
+    <p class="video-caption">Video demostrativo de la preparación tradicional del pozol</p>
+  </div>
+</div>
+
+        <div class="navigation">
+          <button class="nav-btn disabled">Lección Anterior</button>
+          <button class="nav-btn" onclick="completeTutorial()">Completar Tutorial</button>
+        </div>
+      </div>
+
+      <!-- BARRA LATERAL -->
+      <div class="sidebar">
+        <div class="instructor-card">
+          <div class="instructor-avatar">M</div>
+          <h3>Abuela María López</h3>
+          <p>Guardiana de saberes olmeca-zoques</p>
+          <p>📚 1,567 aprendices</p>
+          <p>⭐ 4.9/5.0</p>
+        </div>
+
+        <div class="progress-section">
+          <h4>Tu Progreso</h4>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <p id="progressText">0% Completado</p>
+          <button class="btn-complete" id="btnComplete" onclick="completeTutorial()">Marcar como Completado</button>
+        </div>
+
+        <div class="cultural-info">
+          <h4>📜 Significado Cultural</h4>
+          <p>El pozol es más que una bebida: es un elemento ritual que conecta a la comunidad olmeca-zoque con sus ancestros. Se consume en ceremonias agrícolas, nacimientos y festividades importantes.</p>
+          <p><strong>Región:</strong> Chiapas-Tabasco</p>
+          <p><strong>Antigüedad:</strong> Más de 2000 años</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE LOGIN - AHORA ESTÁ OCULTO INICIALMENTE -->
+  <div id="loginModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeLoginModal()">×</button>
+      <h2>Iniciar Sesión</h2>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="email">Correo Electrónico</label>
+          <input type="email" id="email" placeholder="tu@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" placeholder="Tu contraseña" required>
+        </div>
+        <button type="submit" class="btn-primary">Iniciar Sesión</button>
+        <div id="loginError" class="error-message"></div>
+      </form>
+      <p style="text-align: center; margin: 15px 0; color: #7d5d3b;">o</p>
+      <button class="btn-secondary" onclick="signUp()">Crear Cuenta</button>
+    </div>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+  <script>
+    // Configuración de Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyDFegGV0yboLGtN3vkUNTN_X5J2PFe7rXc",
+      authDomain: "artesaniasapp-5a422.firebaseapp.com",
+      projectId: "artesaniasapp-5a422",
+      storageBucket: "artesaniasapp-5a422.firebasestorage.app",
+      messagingSenderId: "1064065009733",
+      appId: "1:1064065009733:web:d6e6ffa7ee02be1d2fbb2c"
+    };
+
+    // Inicializar Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const database = firebase.database();
+
+    // Obtener ID del tutorial de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const tutorialId = urlParams.get('id') || 1;
+
+    // Funciones de Autenticación
+    function openLoginModal() {
+      document.getElementById('loginModal').style.display = 'flex';
+    }
+
+    function closeLoginModal() {
+      document.getElementById('loginModal').style.display = 'none';
+      document.getElementById('loginError').textContent = '';
+      // Limpiar campos
+      document.getElementById('email').value = '';
+      document.getElementById('password').value = '';
+    }
+
+    function signUp() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      if (!email || !password) {
+        document.getElementById('loginError').textContent = 'Por favor completa todos los campos';
+        return;
+      }
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          closeLoginModal();
+          updateUI(userCredential.user);
+          // Crear perfil de usuario en la base de datos
+          createUserProfile(userCredential.user);
+        })
+        .catch((error) => {
+          document.getElementById('loginError').textContent = error.message;
+        });
+    }
+
+    // Crear perfil de usuario en la base de datos
+    function createUserProfile(user) {
+      database.ref('users/' + user.uid + '/profile').set({
+        email: user.email,
+        displayName: user.email.split('@')[0],
+        createdAt: new Date().toISOString(),
+        completedTutorials: 0
+      });
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const errorElement = document.getElementById('loginError');
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          closeLoginModal();
+          updateUI(userCredential.user);
+        })
+        .catch((error) => {
+          errorElement.textContent = error.message;
+        });
+    });
+
+    function logout() {
+      auth.signOut().then(() => {
+        updateUI(null);
+      });
+    }
+
+    function updateUI(user) {
+      const userInfo = document.getElementById('userInfo');
+      const loginButton = document.getElementById('loginButton');
+      const userAvatar = document.getElementById('userAvatar');
+      const userName = document.getElementById('userName');
+      const btnComplete = document.getElementById('btnComplete');
+
+      if (user) {
+        userInfo.style.display = 'flex';
+        loginButton.style.display = 'none';
+        const displayName = user.displayName || user.email.split('@')[0];
+        userName.textContent = displayName;
+        userAvatar.textContent = displayName.charAt(0).toUpperCase();
+        
+        // Cargar progreso del usuario
+        loadUserProgress(user.uid);
+        btnComplete.disabled = false;
+      } else {
+        userInfo.style.display = 'none';
+        loginButton.style.display = 'block';
+        btnComplete.disabled = true;
+        updateProgressUI({ status: 'not_started', completedLessons: 0 });
+      }
+    }
+
+    // Función para cargar progreso del usuario
+    function loadUserProgress(userId) {
+      database.ref('users/' + userId + '/progress/' + tutorialId).once('value')
+        .then((snapshot) => {
+          const progress = snapshot.val();
+          if (progress) {
+            updateProgressUI(progress);
+          } else {
+            // Si no existe progreso, crear uno nuevo
+            updateProgressUI({ status: 'not_started', completedLessons: 0 });
+          }
+        });
+    }
+
+    // Función para actualizar la barra de progreso
+    function updateProgressUI(progress) {
+      const progressFill = document.getElementById('progressFill');
+      const progressText = document.getElementById('progressText');
+      const btnComplete = document.getElementById('btnComplete');
+      
+      if (progress.status === 'completed') {
+        progressFill.style.width = '100%';
+        progressText.textContent = '100% Completado';
+        btnComplete.textContent = '✅ Tutorial Completado';
+        btnComplete.disabled = true;
+      } else if (progress.status === 'in_progress') {
+        const percentage = (progress.completedLessons / 6) * 100;
+        progressFill.style.width = percentage + '%';
+        progressText.textContent = Math.round(percentage) + '% Completado';
+        btnComplete.textContent = 'Continuar Aprendiendo';
+      } else {
+        progressFill.style.width = '0%';
+        progressText.textContent = '0% Completado';
+        btnComplete.textContent = 'Comenzar Tutorial';
+      }
+    }
+
+    // Función para completar tutorial
+    function completeTutorial() {
+      const user = auth.currentUser;
+      if (!user) {
+        openLoginModal();
+        return;
+      }
+
+      const userProgress = {
+        status: 'completed',
+        completedAt: new Date().toISOString(),
+        completedLessons: 6,
+        tutorialId: tutorialId,
+        tutorialName: 'Pozol de Cacao y Maíz'
+      };
+
+      // Guardar progreso individual del usuario
+      database.ref('users/' + user.uid + '/progress/' + tutorialId).set(userProgress)
+        .then(() => {
+          // Actualizar contador global de tutoriales completados
+          database.ref('users/' + user.uid + '/profile/completedTutorials').transaction((current) => {
+            return (current || 0) + 1;
+          });
+          
+          alert('¡Felicidades! Has completado el tutorial de Pozol.');
+          updateProgressUI(userProgress);
+        })
+        .catch((error) => {
+          console.error('Error al guardar progreso:', error);
+          alert('Error al guardar tu progreso. Intenta nuevamente.');
+        });
+    }
+
+    // Inicializar
+    document.addEventListener('DOMContentLoaded', () => {
+      auth.onAuthStateChanged((user) => {
+        updateUI(user);
+      });
+
+      // Cerrar modal al hacer click fuera
+      document.getElementById('loginModal').addEventListener('click', (e) => {
+        if (e.target.id === 'loginModal') {
+          closeLoginModal();
+        }
+      });
+
+      // Prevenir que el modal se cierre al hacer click dentro
+      document.querySelector('.modal-content').addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    });
+  </script>
+</body>
+</html>

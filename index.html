@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="img/pottery.png" type="image/png">
+  <title>Aprende Artesanías Tradicionales</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #fef7ec 0%, #e8d5c4 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+      min-height: 100vh;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    h1 {
+      color: #5d4037;
+      margin-bottom: 10px;
+      font-size: 2.2rem;
+    }
+    
+    .subtitle {
+      color: #7d5d3b;
+      font-size: 1.1rem;
+      max-width: 600px;
+      line-height: 1.5;
+    }
+
+    .video-container {
+      max-width: 800px;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 800px;
+      width: 100%;
+      margin: 30px 0;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .btn-primary {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: linear-gradient(45deg, #8b7355, #a9927d);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Escuela de Artesanías Tradicionales</h1>
+    <p class="subtitle">Aprende técnicas ancestrales directamente de maestros artesanos y contribuye a preservar nuestro patrimonio cultural</p>
+  </div>
+
+  <div class="video-container">
+    <video controls autoplay muted>
+      <source src="video/PRODUCTOS_ARTESANALES.mp4" type="video/mp4">
+      Tu navegador no admite la reproducción de video.
+    </video>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🏺</div>
+      <h3>Tutoriales Paso a Paso</h3>
+      <p>Aprende con videos detallados de cada técnica</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">👨‍🏫</div>
+      <h3>Maestros Artesanos</h3>
+      <p>Instrucción directa de expertos locales</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📚</div>
+      <h3>Recursos Descargables</h3>
+      <p>Guías y patrones para practicar</p>
+    </div>
+  </div>
+
+  <button class="btn-primary" onclick="window.location.href='catalago.html'">
+    Explorar Tutoriales
+  </button>
+
+  <!-- Firebase se mantiene igual -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDFegGV0yboLGtN3vkUNTN_X5J2PFe7rXc",
+      authDomain: "artesaniasapp-5a422.firebaseapp.com",
+      projectId: "artesaniasapp-5a422",
+      storageBucket: "artesaniasapp-5a422.firebasestorage.app",
+      messagingSenderId: "1064065009733",
+      appId: "1:1064065009733:web:d6e6ffa7ee02be1d2fbb2c"
+    };
+  </script>
+</body>
+</html>

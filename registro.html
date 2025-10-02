@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro Artesanías</title>
+  <link rel="icon" href="img/pottery.png" type="image/png">
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fcefe6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .register-container {
+      background-color: #fff3e0;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #6d4c41;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 6px;
+      border: 1px solid #d7ccc8;
+    }
+
+    button {
+      background-color: #a1887f;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #6d4c41;
+    }
+
+    a {
+      display: block;
+      margin-top: 15px;
+      color: #5d4037;
+      text-decoration: none;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+    .login-logo {
+  width: 250px;
+  height: 200px;
+  object-fit: cover;
+}
+  </style>
+</head>
+<body>
+  <div class="register-container">
+    <img src="img/LogoCCN(1).png" alt="Logo" class="login-logo">
+    <h2>Crear Cuenta</h2>
+    <input type="email" id="email" placeholder="Correo electrónico" required />
+    <input type="password" id="password" placeholder="Contraseña" required />
+    <input type="password" id="confirmPassword" placeholder="Confirmar contraseña" required />
+    <button onclick="register()">Registrarse</button>
+    <div class="error" id="errorMsg"></div>
+    <a href="catalago.html">¿Ya tienes cuenta? Inicia sesión aquí</a>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+  apiKey: "AIzaSyDFegGV0yboLGtN3vkUNTN_X5J2PFe7rXc",
+  authDomain: "artesaniasapp-5a422.firebaseapp.com",
+  projectId: "artesaniasapp-5a422",
+  storageBucket: "artesaniasapp-5a422.firebasestorage.app",
+  messagingSenderId: "1064065009733",
+  appId: "1:1064065009733:web:d6e6ffa7ee02be1d2fbb2c"
+};
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function register() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+      const errorMsg = document.getElementById("errorMsg");
+
+      if (password !== confirmPassword) {
+        errorMsg.textContent = "Las contraseñas no coinciden.";
+        return;
+      }
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          //alert("Registro exitoso. Ahora puedes iniciar sesión.");
+          window.location.href = "catalago.html";
+        })
+        .catch((error) => {
+          errorMsg.textContent = "Error: " + error.message;
+        });
+    }
+  </script>
+</body>
+</html>
